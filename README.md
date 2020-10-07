@@ -11,7 +11,7 @@ Given a user requires a new secure password,
 4. The password generated is displayed on the page.
 
 The Password Generator website looks like:
-![Password Generator Website Screenshot](passwordgeneratorwebsite.png) 
+![Password Generator Website Screenshot](passwordgeneratorwebsite.PNG) 
 
 In this project, I used javascript to code the password generator.
 
