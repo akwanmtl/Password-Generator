@@ -20,7 +20,9 @@ These are the specifics of the password generator:
 1. Click on the button to begin
 2. Enter a number between 8 and 128. If at any time you press Cancel at this point, it will cancel the password generator. If a number that is not bewteen 8 and 128 or a nonnumeric input was entered, the appropriate alert will display.
 3. The next part is to choose at least one of the 4 options: lowercase, uppoercase, number and/or special characters. If none were picked, you will be asked once again until you choose at least one of the 4 options.
-4. Finally a password will be generated.
+4. Each time you choose one of the 4 options, one random character of that type is added to the password. The remaining password is filled by randomly choosing among the type of characters selected. 
+5. The password is shuffled before being generated.
+6. To copy the password, you can click on the textarea. The password will be copied into the clipboard automatically.
 
 
 Link to the Github repository: https://github.com/akwanmtl/Password-Generator
@@ -30,6 +32,7 @@ Link to the website: https://akwanmtl.github.io/Password-Generator/
 ## Credits
 
 * [License badge link](https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba)
+* [Durstenfeld algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
 
 
 ## License

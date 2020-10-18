@@ -62,12 +62,9 @@ function generatePassword() {
     var lowerChar = confirm("Would you like to use lowercase characters in your password?");
     // if user wants lowercase characters
     if (lowerChar) { 
-      var k = randomNumber(lowerCaseList.length);
       listOfCharacters = listOfCharacters.concat(lowerCaseList); // appends the lowercase list to the final list
-      // password = password.concat(lowerCaseList[Math.round(Math.random()*(lowerCaseList.length-1))]); // adds a lowercase character to password to ensure at least one exists in password
-      // password = password.concat(lowerCaseList[randomNumber(lowerCaseList.length)]);
-      password = password.concat(lowerCaseList[k]);
-      console.log("k",k);
+      password = password.concat(lowerCaseList[randomNumber(lowerCaseList.length)]); //adds a lowercase character to ensure password contains one
+
     }
 
     // checks with user whether they want uppercase characters. 
@@ -75,8 +72,7 @@ function generatePassword() {
     // if user wants uppercase characters
     if (upperChar) { 
       listOfCharacters = listOfCharacters.concat(upperCaseList); // appends the uppercase list to the final list
-      // password = password.concat(upperCaseList[Math.round(Math.random()*(upperCaseList.length-1))]); // adds an uppercase character to password to ensure at least one exists in password
-      password = password.concat(upperCaseList[randomNumber(upperCaseList.length)]);
+      password = password.concat(upperCaseList[randomNumber(upperCaseList.length)]); //adds a uppercase character to ensure password contains one
     }
 
     // checks with user whether they want numbers. 
@@ -84,8 +80,7 @@ function generatePassword() {
     // if user wants numbers
     if (numberChar) {
       listOfCharacters = listOfCharacters.concat(numberList); // appends the number list to the final list
-      // password = password.concat(numberList[Math.round(Math.random()*(numberList.length-1))]); // adds an number character to password to ensure at least one exists in password
-      password = password.concat(numberList[randomNumber(numberList.length)]);
+      password = password.concat(numberList[randomNumber(numberList.length)]); //adds a number character to ensure password contains one
     }
 
     // checks with user whether they want special characters. 
@@ -93,8 +88,7 @@ function generatePassword() {
     // if user wants special characters
     if (specialChar) {
       listOfCharacters = listOfCharacters.concat(specialList); // appends the special list to the final list
-      // password = password.concat(specialList[Math.round(Math.random()*(specialList.length-1))]); // adds an special character to password to ensure at least one exists in password
-      password = password.concat(specialList[randomNumber(specialList.length)]);
+      password = password.concat(specialList[randomNumber(specialList.length)]); //adds a special character to ensure password contains one
     }
     // checks if the user has accepted at least one of the criteria
     if (listOfCharacters.length != 0){
@@ -108,7 +102,6 @@ function generatePassword() {
   // generates the password one character at a time, and for each character, randomly picking from the listOfCharacters
   var l = listOfCharacters.length;
   for (var i = password.length; i < n; i++){
-    // password = password.concat(listOfCharacters[Math.round(Math.random()*(l-1))]);
     password = password.concat(listOfCharacters[randomNumber(l)]);
     console.log("password", password);
   }
@@ -138,14 +131,15 @@ function shuffle(password){
   return passwordArray.join("");
 }
 
+// randomly choose a number between 0 and stringLength-1
 function randomNumber(stringLength){
   return Math.floor(Math.random()*(stringLength));
 }
 
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// when the user clicks on the textarea, it automatically copies the password 
 document.querySelector("textarea").onclick = function(){
   document.querySelector("textarea").select();
   document.execCommand('copy');
