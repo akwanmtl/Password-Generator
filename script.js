@@ -12,7 +12,6 @@ function writePassword() {
     passwordText.value = password;
   }
 
-  
 }
 
 // declaring string of characters used for the password
@@ -54,29 +53,49 @@ function generatePassword() {
 
   var listOfCharacters = ""; //the strings will be appended to this variable whent the user has chosen the criteria
 
+  var password = ""; // initialize empty string for password
+
   // The while loop will break when the user has chosen at least one of the 4 options
   while (true) {
     
+    // checks with user whether they want lowercase characters. 
     var lowerChar = confirm("Would you like to use lowercase characters in your password?");
-    if (lowerChar) {
-      listOfCharacters = listOfCharacters.concat(lowerCaseList);
+    // if user wants lowercase characters
+    if (lowerChar) { 
+      var k = randomNumber(lowerCaseList.length);
+      listOfCharacters = listOfCharacters.concat(lowerCaseList); // appends the lowercase list to the final list
+      // password = password.concat(lowerCaseList[Math.round(Math.random()*(lowerCaseList.length-1))]); // adds a lowercase character to password to ensure at least one exists in password
+      // password = password.concat(lowerCaseList[randomNumber(lowerCaseList.length)]);
+      password = password.concat(lowerCaseList[k]);
+      console.log("k",k);
     }
 
+    // checks with user whether they want uppercase characters. 
     var upperChar = confirm("Would you like to use uppercase characters in your password?");
-    if (upperChar) {
-      listOfCharacters = listOfCharacters.concat(upperCaseList);
+    // if user wants uppercase characters
+    if (upperChar) { 
+      listOfCharacters = listOfCharacters.concat(upperCaseList); // appends the uppercase list to the final list
+      // password = password.concat(upperCaseList[Math.round(Math.random()*(upperCaseList.length-1))]); // adds an uppercase character to password to ensure at least one exists in password
+      password = password.concat(upperCaseList[randomNumber(upperCaseList.length)]);
     }
 
+    // checks with user whether they want numbers. 
     var numberChar = confirm("Would you like to use number characters in your password?");
+    // if user wants numbers
     if (numberChar) {
-      listOfCharacters = listOfCharacters.concat(numberList);
+      listOfCharacters = listOfCharacters.concat(numberList); // appends the number list to the final list
+      // password = password.concat(numberList[Math.round(Math.random()*(numberList.length-1))]); // adds an number character to password to ensure at least one exists in password
+      password = password.concat(numberList[randomNumber(numberList.length)]);
     }
 
+    // checks with user whether they want special characters. 
     var specialChar = confirm("Would you like to use special characters in your password?");
+    // if user wants special characters
     if (specialChar) {
-      listOfCharacters = listOfCharacters.concat(specialList);
+      listOfCharacters = listOfCharacters.concat(specialList); // appends the special list to the final list
+      // password = password.concat(specialList[Math.round(Math.random()*(specialList.length-1))]); // adds an special character to password to ensure at least one exists in password
+      password = password.concat(specialList[randomNumber(specialList.length)]);
     }
-   
     // checks if the user has accepted at least one of the criteria
     if (listOfCharacters.length != 0){
       break;
@@ -88,14 +107,46 @@ function generatePassword() {
   
   // generates the password one character at a time, and for each character, randomly picking from the listOfCharacters
   var l = listOfCharacters.length;
- 
-  var password = "";
-  for (var i = 0; i < n; i++){
-    password = password.concat(listOfCharacters[Math.round(Math.random()*l)]);
+  for (var i = password.length; i < n; i++){
+    // password = password.concat(listOfCharacters[Math.round(Math.random()*(l-1))]);
+    password = password.concat(listOfCharacters[randomNumber(l)]);
+    console.log("password", password);
   }
-  return password;
+
+  // runs the shuffle function to shuffle password one final time since we first added one of each characters that the user wanted at the beginning
+  return shuffle(password);
 
 }
 
+//function to shuffle password - using the Durstenfeld shuffle algorithm
+function shuffle(password){
+
+  // convert the string to array for the shuffle to work
+  var passwordArray = password.split("");
+  console.log("before", passwordArray);
+
+  for (var i = passwordArray.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = passwordArray[i];
+    passwordArray[i] = passwordArray[j];
+    passwordArray[j] = temp;
+  }
+
+  console.log("after", passwordArray);
+
+  // return the shuffled password as a string using the join method
+  return passwordArray.join("");
+}
+
+function randomNumber(stringLength){
+  return Math.floor(Math.random()*(stringLength));
+}
+
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+document.querySelector("textarea").onclick = function(){
+  document.querySelector("textarea").select();
+  document.execCommand('copy');
+}
