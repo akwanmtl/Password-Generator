@@ -15,6 +15,12 @@ function writePassword() {
   
 }
 
+// declaring string of characters used for the password
+var lowerCaseList = "abcdefghijklmnopqrstuvwxyz";
+var upperCaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numberList = "0123456789";
+var specialList = " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
+
 // Asks user a series of questions and generates the password accordingly 
 function generatePassword() {
   
@@ -51,24 +57,24 @@ function generatePassword() {
   // The while loop will break when the user has chosen at least one of the 4 options
   while (true) {
     
-    var lowerChar = confirm("Would you like to use lowercase characters in your password");
+    var lowerChar = confirm("Would you like to use lowercase characters in your password?");
     if (lowerChar) {
-      listOfCharacters = listOfCharacters.concat("abcdefghijklmnopqrstuvwxyz");
+      listOfCharacters = listOfCharacters.concat(lowerCaseList);
     }
 
-    var upperChar = confirm("Would you like to use uppercase characters in your password");
+    var upperChar = confirm("Would you like to use uppercase characters in your password?");
     if (upperChar) {
-      listOfCharacters = listOfCharacters.concat("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+      listOfCharacters = listOfCharacters.concat(upperCaseList);
     }
 
-    var numberChar = confirm("Would you like to use number characters in your password");
+    var numberChar = confirm("Would you like to use number characters in your password?");
     if (numberChar) {
-      listOfCharacters = listOfCharacters.concat("0123456789");
+      listOfCharacters = listOfCharacters.concat(numberList);
     }
 
-    var specialChar = confirm("Would you like to use special characters in your password");
+    var specialChar = confirm("Would you like to use special characters in your password?");
     if (specialChar) {
-      listOfCharacters = listOfCharacters.concat(" !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~");
+      listOfCharacters = listOfCharacters.concat(specialList);
     }
    
     // checks if the user has accepted at least one of the criteria
@@ -82,6 +88,7 @@ function generatePassword() {
   
   // generates the password one character at a time, and for each character, randomly picking from the listOfCharacters
   var l = listOfCharacters.length;
+ 
   var password = "";
   for (var i = 0; i < n; i++){
     password = password.concat(listOfCharacters[Math.round(Math.random()*l)]);
