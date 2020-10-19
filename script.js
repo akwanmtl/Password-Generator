@@ -116,7 +116,7 @@ function shuffle(password){
 
   // convert the string to array for the shuffle to work
   var passwordArray = password.split("");
-  console.log("before", passwordArray);
+  // console.log("before", passwordArray);
 
   for (var i = passwordArray.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
@@ -124,8 +124,7 @@ function shuffle(password){
     passwordArray[i] = passwordArray[j];
     passwordArray[j] = temp;
   }
-
-  console.log("after", passwordArray);
+  // console.log("after", passwordArray);
 
   // return the shuffled password as a string using the join method
   return passwordArray.join("");
