@@ -103,7 +103,7 @@ function generatePassword() {
   var l = listOfCharacters.length;
   for (var i = password.length; i < n; i++){
     password = password.concat(listOfCharacters[randomNumber(l)]);
-    console.log("password", password);
+    // console.log("password", password);
   }
 
   // runs the shuffle function to shuffle password one final time since we first added one of each characters that the user wanted at the beginning
